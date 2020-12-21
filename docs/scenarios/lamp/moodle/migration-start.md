@@ -83,12 +83,13 @@ Before you start the import process, it's is recommended to back up the default/
    ```bash
    sudo -s
    cd /home/azureadmin/
-   azcopy copy 'https://<storageaccount>.blob.core.windows.net/container/BlobDirectoryName<SAStoken>' '/home/azureadmin/'
+   azcopy copy "https://<storageaccount>.blob.core.windows.net/<container>/<BlobDirectoryName><SAStoken>" "/home/azureadmin/storage.tar.gz"
+   
    ```
    
    Substitute your own storage account and SAS token values. For example:
    
-   `azcopy copy 'https://onpremisesstorage.blob.core.windows.net/migration/storage.tar.gz?sv=2019-12-12&ss=' /home/azureadmin/storage.tar.gz`
+   `azcopy copy "https://onpremisesstorage.blob.core.windows.net/migration/storage.tar.gz?sv=2019-12-12&ss=" "/home/azureadmin/storage.tar.gz"`
    
 1. Extract the compressed file to a directory.
    
@@ -101,7 +102,7 @@ Before you start the import process, it's is recommended to back up the default/
 
 Once extracted, you can find the `storage` directory under `home/azureadmin`. This `storage` directory contains `moodle`, `moodledata`, and configuration directories, and a database backup file; each of which will get copied to the target locations as described in the following steps.
 
-1. Copy the `moodle` and `moodledata` directories to a shared location, `/moodle`.
+1. Copy the `moodle` and `moodledata` directories to a shared location (under /moodle).
    
    ```bash
    cp -rf /home/azureadmin/storage/moodle /moodle/html/
